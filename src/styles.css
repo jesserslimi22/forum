@@ -1,0 +1,227 @@
+@font-face {
+  font-family: 'Hazmat';
+  src: url('../hazmat-font-family/hazmat-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hazmat';
+  src: url('../hazmat-font-family/hazmat-oblique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: oblique;
+}
+
+:root {
+  color-scheme: dark;
+  --bg-deep: #020912;
+  --bg-mid: #071b2e;
+  --panel: rgba(8, 19, 30, 0.7);
+  --panel-border: rgba(126, 220, 255, 0.28);
+  --text: #edfaff;
+  --muted: #9bc5d4;
+  --bright: #8de5ff;
+  --blue: #4dc5ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: 'Hazmat', 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(19, 55, 74, 0.85), transparent 40%),
+    linear-gradient(180deg, #020912 0%, #01080f 100%);
+}
+
+.scene-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hud-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.2rem 2rem 0.8rem;
+  pointer-events: auto;
+  background: linear-gradient(180deg, rgba(5, 15, 24, 0.82), rgba(5, 15, 24, 0.18));
+  border-bottom: 1px solid rgba(157, 220, 255, 0.08);
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  min-width: 160px;
+}
+
+.brand-logo {
+  width: clamp(110px, 12vw, 180px);
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(136, 226, 255, 0.5));
+}
+
+.nav-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.8rem 0.95rem;
+  padding-right: 0.4rem;
+}
+
+.nav-item {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.14rem;
+  padding: 0.55rem 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.is-active {
+  border-color: var(--panel-border);
+  color: var(--bright);
+  background: rgba(99, 165, 205, 0.08);
+}
+
+.home-panel,
+.section-detail {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: min(64rem, 72vw);
+  background: rgba(8, 18, 27, 0.38);
+  border: 1px solid rgba(148, 217, 255, 0.2);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(47, 149, 206, 0.12);
+  padding: 2rem 2.4rem;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.home-panel h1,
+.section-detail h2 {
+  margin: 0.5rem 0 1.3rem;
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+  line-height: 0.96;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.countdown-box {
+  background: rgba(10, 31, 42, 0.75);
+  border: 1px solid rgba(126, 220, 255, 0.16);
+  padding: 1rem 0.5rem;
+}
+
+.countdown-value {
+  display: block;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  color: var(--bright);
+  line-height: 1;
+}
+
+.countdown-label {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.section-detail {
+  width: min(30rem, 60vw);
+  text-align: left;
+}
+
+.section-detail h2 {
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  letter-spacing: 0.14rem;
+}
+
+.section-detail p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1rem 0.8rem;
+  }
+
+  .nav-items {
+    justify-content: flex-start;
+  }
+
+  .home-panel,
+  .section-detail {
+    width: min(80vw, 36rem);
+    padding: 1.2rem 1.4rem;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+  }
+}
